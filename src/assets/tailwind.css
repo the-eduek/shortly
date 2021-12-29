@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {    
+    --red: hsl(0, 87%, 67%);
+    --gray: hsl(0, 0%, 75%);
+    --white: hsl(0, 0%, 100%);
+    --cyan: hsl(180, 66%, 49%);
+    --darkBlue: hsl(255, 11%, 22%);
+    --cyanLight: hsla(180, 66%, 49%, 0.5);
+    --blackViolet: hsl(260, 8%, 14%);
+    --darkViolet: hsl(257, 27%, 26%);
+    --grayishViolet: hsl(257, 7%, 63%);
+  }
+
+  body {
+    font-weight: 500;
+    text-align: center;
+    color: var(--grayishViolet);
+    font-family: 'Poppins', sans-serif;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+  }
+}
