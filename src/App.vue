@@ -1,5 +1,5 @@
 <script setup>
-import { ref, provide } from 'vue';
+import { ref, provide, watch, onMounted } from 'vue';
 import Nav from "./components/Nav.vue";
 import Hero from "./components/Hero.vue";
 import Features from "./components/Features.vue";
@@ -10,7 +10,7 @@ const url = ref()
 const form = ref()
 const allLinks = ref([])
 
-const shortenLink = async (payload) => {
+const getShortenedLink = async (payload) => {
   try {
     const request = await fetch("https://api.shrtco.de/v2/shorten?url=" + payload) 
     if (!request.ok) {
@@ -20,7 +20,6 @@ const shortenLink = async (payload) => {
       `
     )}
     const response = await request.json();
-    console.log(response)
     return { 
       linkCode: response.result.code,
       shortenedLink: response.result.full_short_link, 
@@ -31,11 +30,24 @@ const shortenLink = async (payload) => {
   }
 }
 
+// Bugs Section
+// 1. It seems allLinks.value doesn't update. It's always the currently shorteend link that's added to the array as the only value making linkExists always true and therefore new values cannot be added to the array because "they are already present in the array."
+// 2. I'm trying to use local Storage. That's where the mounted hook and watch API comes in. Those to do not work.
+// 3. I had to comment out parts of the code that doesn't work so that at least the app runs.
+
+const displayLink = (data) => {
+  const linkExists = allLinks.value.some(item => item.linkCode === data.linkCode);
+
+  // if (!linkExists)
+  allLinks.value.unshift(data)
+  // else console.log("Already shortened this link!")
+}
+
 const handleSubmit = () => {
   if (url.value) {
-    shortenLink(url.value)
+    getShortenedLink(url.value)
       .then(data => {
-        allLinks.value.unshift(data)
+        displayLink(data)
       })
       .catch(error => console.log(error.message))
   } else {
@@ -46,6 +58,15 @@ const handleSubmit = () => {
     }, 2000);
   }
 }
+
+
+onMounted(() => {
+  if(localStorage.links) allLinks.value = JSON.parse(localStorage.links);
+})
+
+watch(allLinks, ()=> {
+  localStorage.setItem('links', JSON.stringify(allLinks.value));
+})
 
 provide('linksArray', allLinks.value)
 </script>
