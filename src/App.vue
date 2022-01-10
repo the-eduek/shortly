@@ -70,9 +70,7 @@ watch(allLinks, (current) => {
 }, { deep: true })
 
 onMounted(() => {
-  if (localStorage.links) {
-    allLinks.value = JSON.parse(localStorage.links)
-  }
+  if (localStorage.links) allLinks.value = JSON.parse(localStorage.links)
 })
 
 provide('linksArray', allLinks)
