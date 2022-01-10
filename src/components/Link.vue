@@ -29,7 +29,3 @@ const copyText = () => {
     </div>        
   </li>
 </template>
-
-<style>
-
-</style>

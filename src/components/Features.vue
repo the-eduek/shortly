@@ -8,12 +8,11 @@ const linksArray = inject('linksArray');
 <template>
   <section class="bg-[#eef0f6] px-6 pb-0.5 pt-44 -mt-36 md:mt-[-7.5rem] md:pb-14 xl:-mt-36 xl:pb-44 xl:px-[6%] 2xl:px-[10%]">
 		<ul class="-mt-20 mb-20">
-			<Link v-for="link in linksArray" :key="link.code" :linkInfo="link"/>
+			<Link v-for="link in linksArray" :key="link.linkCode" :linkInfo="link"/>
 		</ul>
 
 		<div class="">
 			<h2 class="text-[color:var(--darkBlue)] font-bold text-[1.75rem] tracking-tighter lg:text-[2.5rem]">Advanced Statistics</h2>
-
 			<p class="leading-7 pt-2 pb-4 max-w-xl m-auto md:pb-14 lg:text-xl lg:leading-8">Track how your links are performing across the web with our advanced statistics dashboard.</p>
 		</div>
 
@@ -44,4 +43,3 @@ const linksArray = inject('linksArray');
 		</div>
 	</section>  
 </template>
-
