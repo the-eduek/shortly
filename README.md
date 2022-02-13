@@ -1,7 +1,6 @@
-# Vue 3 + Vite
+# shortly
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Shortly is a web app for shortening urls.
+Users can also see a history of shortened urls.
 
-## Recommended IDE Setup
-
-- [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+[live 👀](http://the-eduek.github.io/shortly)
